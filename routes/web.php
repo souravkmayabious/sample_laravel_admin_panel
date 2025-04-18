@@ -1,20 +1,35 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
+// Public
+Route::get('/', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/', [AuthController::class, 'login']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/inputs', function () {
-    return view('inputs');
-});
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
-Route::get('/datatables', function () {
-    return view('datatables');
-});
+// Protected
+Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
+    Route::get('/inputs', function () {
+        return view('inputs');
+    });
+
+    Route::get('/datatables', function () {
+        return view('datatables');
+    });
+
+});   
