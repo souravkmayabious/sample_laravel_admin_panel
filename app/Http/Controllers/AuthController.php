@@ -51,6 +51,33 @@ class AuthController extends Controller
         return redirect('/dashboard');
     }
 
+
+    public function showChangePassword()
+    {
+        return view('change-password');
+    }
+
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        $user = auth()->user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect']);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return back()->with('success', 'Password updated successfully!');
+    }
+
     public function logout()
     {
         Auth::logout();

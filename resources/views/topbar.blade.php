@@ -42,7 +42,7 @@
                     alt="User Image"
                   />
                   <p>
-                    Alexander Pierce - Web Developer
+                    Hello Admin
                     <small>Member since Nov. 2023</small>
                   </p>
                 </li>
@@ -58,7 +58,7 @@
                 <!--end::Menu Body-->
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <a href="password-change" class="btn btn-default btn-flat">Profile</a>
 
                     <!-- Logout link triggers hidden form -->
                     <a href="#" class="btn btn-default btn-flat float-end" 

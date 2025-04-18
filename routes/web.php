@@ -20,6 +20,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 // Protected
 Route::middleware('auth')->group(function () {
 
+    Route::get('/password-change', [AuthController::class, 'showChangePassword'])->name('password.change');
+    Route::post('/password-change', [AuthController::class, 'changePassword'])->name('password.update');
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
